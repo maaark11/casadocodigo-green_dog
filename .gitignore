@@ -97,3 +97,6 @@ local.properties
 .scala_dependencies
 .worksheet
 
+
+### MAC ##
+.DS_Store#
