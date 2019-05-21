@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+
+<head>
+  <title>Green Dog Delivery</title>
+  <script>
+    $(function() {
+      $("#data").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-yy'
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <h1 layout:fragment="header">Cadastro de Pedido</h1>
+  <div layout:fragment="content" class="input-form">
+
+    <div class="well">
+      <form id="orderForm" th:action="@{/orders/(form)}" th:object="${order}" action="#" method="post" class="form-horizontal">
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Erro de validação</p>
+			</div>
+
+			<input readonly th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
+
+      <div class="form-group">
+		    <label class="control-label col-sm-2" for="nome">Nome</label>
+			  <select class="col-sm-10"  th:field="*{user}" >
+          <option th:each="user :${allUsers}" th:value="${user.id}" th:text="${user.name}"/>
+        </select>
+			</div>
+
+      <div class="form-group">
+			  <label class="control-label col-sm-2" for="text">Data</label>
+        <input class="col-sm-10" type="text" id="date" th:field="*{date}" th:class="${#fields.hasErrors('date')} ? 'field-error'"/>
+			</div>
+
+        <select id="itemList" multiple="multiple" th:field="*{items}"  name="itemListId">
+          <option th:each="item :${allItems}" th:value="${{item}}" th:text="${item.name}"/>
+        </select>
+			</div>
+
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" value="Gravar" />
+			</div>
+			<br/>
+			<a th:href="@{/orders/list}" href="list.html"> voltar </a>
+		</form>
+  </div>
+</body>
+</html>

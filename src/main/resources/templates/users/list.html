@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+
+<head>
+  <title>Green Dog Delivery</title>
+</head>
+
+<body>
+  <h1 layout:fragment="header">Lista de Clientes</h1>
+  <div layout:fragment="content" class="container">
+    <div class="alert	alert-success" th:if="${globalMessage}" th:text="${globalMessage}">mensagem</div>
+    <table class="table	table-bordered	table-striped">
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Nome</td>
+          <td>Ações</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:if="${users.empty}">
+          <td colspan="3">Sem clientes</td>
+        </tr>
+        <tr th:each="user	:	${users}">
+          <td th:text="${user.id}">1</td>
+          <td><a href="view.html" th:href="@{'/users/'+${user.id}}" th:text="${user.name}"> nome </a></td>
+          <td><a class="btn btn-warning" href="view.html" th:href="@{'/users/remove/'+${user.id}}"> Remover </a>
+            <a class="btn btn-info" href="view.html" th:href="@{'/users/update/'+${user.id}}"> Atualizar </a></td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="form.html" class="btn	btn-lg	btn-primary" th:href="@{new}">Novo cliente</a>
+  </div>
+</body>
+
+</html>

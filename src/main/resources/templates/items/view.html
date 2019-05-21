@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+
+<head>
+  <title>Green Dog Delivery</title>
+</head>
+
+<body>
+  <h1 layout:fragment="header">Produto</h1>
+  <div layout:fragment="content" class="well">
+    <div class="alert alert-success" th:if="${globalMessage}" th:text="${globalMessage}">Produto gravado com sucesso</div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="id" th:text="${item.id}">123</td>
+          <td id="nome" th:text="${item.name}">Nome...</td>
+          <td id="preco" th:text="${item.price}">Preco...</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pull-left">
+      <a href="form.html" th:href="@{'/items/update/' + ${user.id}}">alterar</a>
+      | <a href="list.hmtl" th:href="@{'/items/remove/' + ${user.id}}">remover</a>
+      | <a href="list.html" th:href="@{/items/list}">voltar</a>
+    </div>
+  </div>
+</body>
+
+</html>
