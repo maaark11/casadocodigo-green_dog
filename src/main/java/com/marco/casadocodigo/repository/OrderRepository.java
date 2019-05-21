@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.marco.casadocodigo.domain.Order;
 
 @Repository
-public interface OrderReposiroty extends JpaRepository<Order, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
 }

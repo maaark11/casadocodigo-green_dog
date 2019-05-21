@@ -1,5 +1,6 @@
 package com.marco.casadocodigo.domain;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -40,12 +41,19 @@ public class Order {
 	public Order() {
 	}
 
-	public Order(Long id, User user, List<Item> itens, Double totalValue) {
-		super();
+	public Order(Long id, User user, List<Item> itens) {
 		this.id = id;
 		this.user = user;
 		this.itens = itens;
-		this.totalValue = totalValue;
+		this.date = Date.from(Instant.now());
+		getTotalValue();
+	}
+	
+	public Order(User user, List<Item> itens) {
+		this.user = user;
+		this.itens = itens;
+		this.date = Date.from(Instant.now());
+		getTotalValue();
 	}
 
 	public Long getId() {
@@ -81,6 +89,7 @@ public class Order {
 	}
 
 	public Double getTotalValue() {
+		totalValue = itens.stream().mapToDouble(Item::getPrice).sum();
 		return totalValue;
 	}
 
