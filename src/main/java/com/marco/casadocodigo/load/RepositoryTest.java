@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.marco.casadocodigo.domain.Item;
 import com.marco.casadocodigo.domain.Order;
 import com.marco.casadocodigo.domain.User;
-import com.marco.casadocodigo.repository.ClientRepository;
+import com.marco.casadocodigo.repository.UserRepository;
 
 @Component
 public class RepositoryTest implements ApplicationRunner {
@@ -27,7 +27,7 @@ public class RepositoryTest implements ApplicationRunner {
 	private static final long ID_ORDER2 = 1001l;
 
 	@Autowired
-	private ClientRepository clientRepository;
+	private UserRepository clientRepository;
 
 	@Override
 	public void run(ApplicationArguments applicationArguments) throws Exception {
@@ -54,8 +54,8 @@ public class RepositoryTest implements ApplicationRunner {
 		orderList2.add(item2);
 		orderList2.add(item2);
 
-		Order order1 = new Order(ID_ORDER1, marco, orderList1, item1.getPrice()+item3.getPrice());
-		Order order2 = new Order(ID_ORDER2, eiji, orderList2, item2.getPrice()+item2.getPrice());
+		Order order1 = new Order(ID_ORDER1, marco, orderList1);
+		Order order2 = new Order(ID_ORDER2, eiji, orderList2);
 		System.out.println("5/7 - CREATING ORDERS");
 		
 		System.out.println("6/7 - ADDING ORDERS TO CLIENTS");
